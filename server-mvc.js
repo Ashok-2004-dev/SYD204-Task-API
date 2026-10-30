@@ -1,9 +1,11 @@
+
 // server-mvc.js
 // Final MVC entry point
 
 require('dotenv').config();
 
 const express = require('express');
+const path = require('path');
 const taskRoutes = require('./src/routes/taskRoutes');
 
 const app = express();
@@ -17,6 +19,9 @@ app.get('/', (req, res) => {
     message: 'Task API (MVC version) is ready!'
   });
 });
+
+// Serve frontend files from the Frontend folder
+app.use('/app', express.static(path.join(__dirname, 'Frontend')));
 
 // Prefix every task route with /tasks
 app.use('/tasks', taskRoutes);

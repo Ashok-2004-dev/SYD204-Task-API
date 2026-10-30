@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TaskFlow task manager">
+  <title>TaskFlow | Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-icon">✓</span><span>Task<span class="brand-light">Flow</span></span></a>
+    <p class="side-label">WORKSPACE</p>
+    <a class="nav-link active" href="#tasks">▦ &nbsp; My Tasks</a>
+    <div class="sidebar-note"><span class="note-icon">✦</span><p><strong>Stay organised</strong><br><small>One task at a time.</small></p></div>
+  </aside>
+  <main class="main-content">
+    <header class="topbar"><span class="topbar-label">PERSONAL WORKSPACE</span><span class="avatar">TF</span></header>
+    <section class="welcome">
+      <p class="eyebrow">YOUR WORKSPACE</p>
+      <h1>Welcome to <span>TaskFlow</span></h1>
+      <p class="subheading">Manage your tasks and stay organised.</p>
+    </section>
+    <section class="stats-grid" aria-label="Task summary">
+      <article class="stat-card"><div class="stat-top">Total tasks <span class="stat-icon lavender">▦</span></div><strong id="total-count">0</strong><small>Tasks in your list</small></article>
+      <article class="stat-card"><div class="stat-top">Completed <span class="stat-icon green">✓</span></div><strong id="completed-count">0</strong><small>Tasks finished</small></article>
+      <article class="stat-card"><div class="stat-top">Pending <span class="stat-icon blue">◷</span></div><strong id="pending-count">0</strong><small>Tasks to work on</small></article>
+    </section>
+    <section class="composer">
+      <p class="eyebrow">QUICK ACTION</p><h2>Add a new task</h2>
+      <form id="task-form">
+        <label class="sr-only" for="task-title">Task title</label>
+        <input id="task-title" type="text" maxlength="255" placeholder="What needs to be done?" required>
+        <button class="primary-button" type="submit">+ Add task</button>
+      </form>
+      <p id="form-message" class="message" role="status" aria-live="polite"></p>
+    </section>
+    <section class="tasks-section" id="tasks">
+      <div class="tasks-heading"><div><p class="eyebrow">YOUR LIST</p><h2>My Tasks <span class="count" id="visible-count">0</span></h2></div><button class="refresh-button" id="refresh-button" type="button">↻ Refresh</button></div>
+      <div class="list-toolbar">
+        <div class="filters" aria-label="Filter tasks">
+          <button class="filter active" data-filter="all" aria-pressed="true" type="button">All</button>
+          <button class="filter" data-filter="pending" aria-pressed="false" type="button">Pending</button>
+          <button class="filter" data-filter="completed" aria-pressed="false" type="button">Completed</button>
+        </div>
+        <span class="list-hint">Select a task to update its status</span>
+      </div>
+      <div id="task-list" class="task-list" aria-live="polite"><p class="loading">Loading your tasks...</p></div>
+    </section>
+    <footer>TaskFlow · Simple task management</footer>
+  </main>
+</div>
+<dialog class="edit-dialog" id="edit-dialog">
+  <form id="edit-form">
+    <div class="dialog-top"><div><p class="eyebrow">UPDATE TASK</p><h2>Edit task</h2></div><button class="icon-button" id="close-dialog" type="button" aria-label="Close">✕</button></div>
+    <label class="field-label" for="edit-title">Task title</label>
+    <input id="edit-title" type="text" maxlength="255" required>
+    <label class="check-label"><input id="edit-completed" type="checkbox"> Mark as completed</label>
+    <p id="edit-message" class="message" role="alert"></p>
+    <div class="dialog-actions"><button class="secondary-button" id="cancel-edit" type="button">Cancel</button><button class="primary-button" type="submit">Save changes</button></div>
+  </form>
+</dialog>
+</body>
+</html>
